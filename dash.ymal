@@ -1,0 +1,238 @@
+type: custom:layout-card
+layout_type: custom:grid-layout
+layout:
+  grid-template-columns: auto 0.01px 25%
+  grid-template-rows: auto
+  grid-template-areas: |
+    "header header header"
+    "main . sidebar"
+    "footer footer footer"
+  mediaquery:
+    '(max-width: 600px)':
+      grid-template-columns: 100%
+      grid-template-areas: |
+        "header"
+        "sidebar"
+        "main"
+        "footer"
+    '(max-width: 800px)':
+      grid-template-columns: 50% 50%
+      grid-template-areas: |
+        "header sidebar"
+        "main main"
+        "footer footer"
+cards:
+  - type: vertical-stack
+    cards:
+      - type: markdown
+        style:
+          .: |
+            ha-card {
+              border-radius: 20px;
+              overflow: hidden;
+              margin: 0 auto;
+              padding-top: 0px;
+            }
+          ha-markdown:
+            $: |
+              td, th {
+                width: auto;
+                word-wrap: break-word;
+                border-spacing: 0px;
+                    margin-left:auto; 
+                    margin-right:auto;
+
+              }
+              table {
+                width: 100%;
+                border-spacing: 0px;
+                    margin-left:auto; 
+                    margin-right:auto;
+              }
+        content: >
+          |<font size=6>{% if now().strftime("%H")|int < 12 %}Good morning.{%
+          elif now().strftime("%H")|int < 18 %}Good afternoon.{% else %}Good
+          evening.{% endif %} </font><br><font size=3>{{user}}</font> |<font
+          size=5>{{now().strftime("%I:%M %p")}}</font><br><font size=3>
+          {{now().strftime("%A")}}, {{now().strftime("%d %B")}} </font> |
+
+          |:--|---------:|
+
+          || |
+
+
+          ||||||
+
+          |:--:|:--:|:--:|:--:|:--:|
+
+          |<br><br>|||||
+
+          |Home|First Floor|Ground Floor|Backyard|Prayer Time|
+      - type: custom:stack-in-card
+        keep:
+          background: true
+          box_shadow: true
+          margin: true
+          outer_padding: true
+          border_radius: true
+        cards:
+          - type: grid
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.room_temperature
+                show:
+                  labels: true
+                color_thresholds:
+                  - value: 20
+                    color: '#f39c12'
+                  - value: 21
+                    color: '#d35400'
+                  - value: 21.5
+                    color: '#c0392b'
+                card_mod:
+                  style: |
+                    ha-card {
+                      height: 100% !important;
+                      background: none;
+                      box-shadow: none;
+                    }
+              - type: custom:simple-thermostat
+                entity: climate.computer_room_thermostat
+                header: false
+                layout:
+                  mode:
+                    names: true
+                    icons: true
+                    headings: false
+                  step: column
+                control:
+                  hvac:
+                    heat: false
+                    heat_cool: false
+                step_size: '1'
+                decimals: '0'
+                card_mod:
+                  style: |
+                    ha-card {
+                      height: 100% !important;
+                      background: none;
+                      box-shadow: none;
+                    }
+            columns: 2
+            square: false
+          - type: custom:gap-card
+            height: 10
+            size: null
+          - type: grid
+            cards:
+              - type: picture-entity
+                entity: camera.drive_way
+                show_name: false
+                show_state: false
+                camera_view: live
+                camera_image: camera.drive_way
+              - type: picture-entity
+                entity: camera.main_enterance
+                show_name: false
+                show_state: false
+                camera_view: live
+                camera_image: camera.main_enterance
+              - type: picture-entity
+                entity: camera.play_ground
+                show_name: false
+                show_state: false
+                camera_view: live
+                camera_image: camera.play_ground
+              - type: picture-entity
+                entity: camera.vegetation
+                show_name: false
+                show_state: false
+                camera_view: live
+                camera_image: camera.vegetation
+            columns: 4
+            square: false
+          - type: custom:gap-card
+            height: 130
+            size: null
+        card_mod:
+          style: |
+            ha-card {
+              border-style: solid;
+              border-width: 0px;
+              border-radius: 20px;
+
+              background-color: var(--background-card-color);
+
+              --ha-card-header-color: white;
+              --ha-card-header-font-size: 40px;
+
+              height: 100% !important;
+
+              --vertical-stack-card-margin: 0px 0px 0px 0px;
+
+              --ha-card-background: rgba(50,50,50,0.3);
+            }
+        view_layout:
+          grid-area: sidebar
+    view_layout:
+      grid-area: main
+  - type: custom:stack-in-card
+    keep:
+      background: true
+      box_shadow: true
+      margin: true
+      outer_padding: true
+      border_radius: true
+    cards:
+      - type: glance
+        entities:
+          - entity: person.abdulla
+          - entity: person.ummohammed
+        card_mod:
+          style: |
+            ha-card {
+              height: 100% !important;
+              background: none;
+              box-shadow: none;
+            }
+      - type: custom:weather-card
+        entity: weather.amg_home
+        number_of_forecasts: '5'
+        details: false
+        card_mod:
+          style: |
+            ha-card {
+              height: 100% !important;
+              background: none;
+              box-shadow: none;
+            }
+      - type: custom:sun-card
+        darkMode: true
+        card_mod:
+          style: |
+            ha-card {
+              height: 100% !important;
+              background: none;
+              box-shadow: none;
+            }
+    card_mod:
+      style: |
+        ha-card {
+          border-style: solid;
+          border-width: 0px;
+          border-radius: 20px;
+
+          background-color: var(--background-card-color);
+
+          --ha-card-header-color: white;
+          --ha-card-header-font-size: 40px;
+
+          height: 100% !important;
+
+          --vertical-stack-card-margin: 0px 0px 0px 0px;
+
+          --ha-card-background: rgba(50,50,50,0.3);
+        }
+    view_layout:
+      grid-area: sidebar
