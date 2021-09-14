@@ -16,7 +16,7 @@ Custom Cards used
 ### [7- custom:sun-card](https://github.com/AitorDB/home-assistant-sun-card)
 ### [8- Card Mod](https://github.com/thomasloven/lovelace-card-mod)
 
-I have used night theme and removed the header with the below command from card mod
+I have used [dark](https://community.home-assistant.io/t/clear-theme-dark/100960) theme and removed the header with the below command from card mod
 ```
       card-mod-theme: night #name of the theme used
       card-mod-root: |
