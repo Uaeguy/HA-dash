@@ -17,12 +17,12 @@ Custom Cards used
 ### 8- Card Mod
 
 I have used night theme and removed the header with the below command from card mod
-
-`      card-mod-theme: night
+```
+      card-mod-theme: night
       card-mod-root: |
         app-header {
           display: none;
         }
       # Background image
-`
+```
 
