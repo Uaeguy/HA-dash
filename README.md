@@ -30,4 +30,4 @@ I have used [dark](https://community.home-assistant.io/t/clear-theme-dark/100960
 
 # What you need to do?
 #### change all entities to your HA 
-#### This is only 1 dashboard, you need to add more dashboards or views then edit the markdown card and add hyperlinks to your dashboards to navigate to them
+#### This is only 1 dashboard, you need to add more dashboards or views then edit the buttons card and add navigation to your dashboards
