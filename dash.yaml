@@ -83,12 +83,13 @@ cards:
                   - sensor.room_temperature
                 show:
                   labels: true
+                  points: false
                 color_thresholds:
-                  - value: 20
+                  - value: 24
                     color: '#f39c12'
-                  - value: 21
+                  - value: 26
                     color: '#d35400'
-                  - value: 21.5
+                  - value: 28
                     color: '#c0392b'
                 card_mod:
                   style: |
