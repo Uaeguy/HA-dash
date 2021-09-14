@@ -14,3 +14,5 @@ Custom Cards used
 ### 6- custom:weather-card
 ### 7- custom:sun-card
 ### 8- Card Mod
+
+I have used night theme and removed the header 
