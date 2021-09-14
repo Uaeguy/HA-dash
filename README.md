@@ -1,4 +1,5 @@
 # HA-dash
+---
 
 This is a simple dash board for home assistant running on tablet 
 
@@ -15,4 +16,13 @@ Custom Cards used
 ### 7- custom:sun-card
 ### 8- Card Mod
 
-I have used night theme and removed the header 
+I have used night theme and removed the header with the below command from card mod
+
+`      card-mod-theme: night
+      card-mod-root: |
+        app-header {
+          display: none;
+        }
+      # Background image
+`
+
