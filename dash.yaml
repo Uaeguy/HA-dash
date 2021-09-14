@@ -24,50 +24,135 @@ layout:
 cards:
   - type: vertical-stack
     cards:
-      - type: markdown
-        style:
-          .: |
+      - type: custom:stack-in-card
+        card_mod:
+          style: |
             ha-card {
+              border-style: solid;
+              border-width: 0px;
               border-radius: 20px;
-              overflow: hidden;
-              margin: 0 auto;
-              padding-top: 0px;
             }
-          ha-markdown:
-            $: |
-              td, th {
-                width: auto;
-                word-wrap: break-word;
-                border-spacing: 0px;
-                    margin-left:auto; 
-                    margin-right:auto;
+        keep:
+          background: true
+          box_shadow: true
+          margin: true
+          outer_padding: true
+          border_radius: true
+        cards:
+          - type: markdown
+            style:
+              .: |
+                ha-card {
+                  border-radius: 20px;
+                  overflow: hidden;
+                  margin: 0 auto;
+                  padding-top: 0px;
+                  background: none;
+                  box-shadow: none;
+                }
+              ha-markdown:
+                $: |
+                  td, th {
+                    width: auto;
+                    word-wrap: break-word;
+                    border-spacing: 0px;
+                        margin-left:auto; 
+                        margin-right:auto;
 
-              }
-              table {
-                width: 100%;
-                border-spacing: 0px;
-                    margin-left:auto; 
-                    margin-right:auto;
-              }
-        content: >
-          |<font size=6>{% if now().strftime("%H")|int < 12 %}Good morning.{%
-          elif now().strftime("%H")|int < 18 %}Good afternoon.{% else %}Good
-          evening.{% endif %} </font><br><font size=3>{{user}}</font> |<font
-          size=5>{{now().strftime("%I:%M %p")}}</font><br><font size=3>
-          {{now().strftime("%A")}}, {{now().strftime("%d %B")}} </font> |
+                  }
+                  table {
+                    width: 100%;
+                    border-spacing: 0px;
+                        margin-left:auto; 
+                        margin-right:auto;
+                  }
+            content: >
+              |<font size=6>{% if now().strftime("%H")|int < 12 %}Good
+              morning.{% elif now().strftime("%H")|int < 18 %}Good afternoon.{%
+              else %}Good evening.{% endif %} </font><br><font
+              size=3>{{user}}</font> |<font size=5>{{now().strftime("%I:%M
+              %p")}}</font><br><font size=3> {{now().strftime("%A")}},
+              {{now().strftime("%d %B")}} </font> |
 
-          |:--|---------:|
+              |:--|---------:|
 
-          || |
-
-
-          ||||||
-
-          |:--:|:--:|:--:|:--:|:--:|
-
-          |<br><br>|||||
-
-          |Home|First Floor|Ground Floor|Backyard|Prayer Time|
+              || |
+          - type: horizontal-stack
+            cards:
+              - type: button
+                tap_action:
+                  action: toggle
+                show_name: true
+                show_icon: false
+                name: Home
+                card_mod:
+                  style: |
+                    ha-card {
+                      height: 100% !important;
+                      background: none;
+                      box-shadow: none;
+                    }
+              - type: button
+                tap_action:
+                  action: toggle
+                show_name: true
+                show_icon: false
+                name: First Floor
+                card_mod:
+                  style: |
+                    ha-card {
+                      height: 100% !important;
+                      background: none;
+                      box-shadow: none;
+                    }
+              - type: button
+                tap_action:
+                  action: toggle
+                show_name: true
+                show_icon: false
+                name: Ground Floor
+                card_mod:
+                  style: |
+                    ha-card {
+                      height: 100% !important;
+                      background: none;
+                      box-shadow: none;
+                    }
+              - type: button
+                tap_action:
+                  action: toggle
+                show_name: true
+                show_icon: false
+                name: Backyard
+                card_mod:
+                  style: |
+                    ha-card {
+                      height: 100% !important;
+                      background: none;
+                      box-shadow: none;
+                    }
+              - type: button
+                tap_action:
+                  action: toggle
+                show_name: true
+                show_icon: false
+                name: Prayer Time
+                card_mod:
+                  style: |
+                    ha-card {
+                      height: 100% !important;
+                      background: none;
+                      box-shadow: none;
+                    }
+            card_mod:
+              style: |
+                ha-card {
+                  height: 100% !important;
+                  background: none;
+                  box-shadow: none;
+                }
+        view_layout:
+          grid-area: footer
       - type: custom:stack-in-card
         keep:
           background: true
