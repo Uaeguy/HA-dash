@@ -232,7 +232,7 @@ cards:
 
           --vertical-stack-card-margin: 0px 0px 0px 0px;
 
-          --ha-card-background: rgba(50,50,50,0.3);
+          --ha-card-background: var(--background-card-color);
         }
     view_layout:
       grid-area: sidebar
