@@ -17,7 +17,7 @@ Custom Cards used
 ### [8- Card Mod](https://github.com/thomasloven/lovelace-card-mod)
 ### [9- mini-media-player](https://github.com/kalkih/mini-media-player)
 ### [10- Homekit-panel-card](https://github.com/DBuit/Homekit-panel-card)
-### [10- roku-card](https://github.com/iantrich/roku-card)
+### [11- roku-card](https://github.com/iantrich/roku-card)
 
 
 
