@@ -1,0 +1,1014 @@
+type: custom:layout-card
+layout_type: custom:grid-layout
+layout:
+  grid-template-columns: auto 0.01px 25%
+  grid-template-rows: auto
+  grid-template-areas: |
+    "header header header"
+    "main . sidebar"
+    "footer footer footer"
+  mediaquery:
+    '(max-width: 600px)':
+      grid-template-columns: 100%
+      grid-template-areas: |
+        "header"
+        "sidebar"
+        "main"
+        "footer"
+    '(max-width: 800px)':
+      grid-template-columns: 50% 50%
+      grid-template-areas: |
+        "header sidebar"
+        "main main"
+        "footer footer"
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:stack-in-card
+        card_mod:
+          style: |
+            ha-card {
+              border-style: solid;
+              border-width: 0px;
+              border-radius: 20px;
+            }
+        keep:
+          background: true
+          box_shadow: true
+          margin: true
+          outer_padding: true
+          border_radius: true
+        cards:
+          - type: markdown
+            style:
+              .: |
+                ha-card {
+                  border-radius: 20px;
+                  overflow: hidden;
+                  margin: 0 auto;
+                  padding-top: 0px;
+                  background: none;
+                  box-shadow: none;
+                }
+              ha-markdown:
+                $: |
+                  td, th {
+                    width: auto;
+                    word-wrap: break-word;
+                    border-spacing: 0px;
+                        margin-left:auto; 
+                        margin-right:auto;
+
+                  }
+                  table {
+                    width: 100%;
+                    border-spacing: 0px;
+                        margin-left:auto; 
+                        margin-right:auto;
+                  }
+            content: >
+              |<font size=6>{% if now().strftime("%H")|int < 12 %}Good
+              morning.{% elif now().strftime("%H")|int < 18 %}Good afternoon.{%
+              else %}Good evening.{% endif %} </font><br><font
+              size=3>{{user}}</font> |<font size=5>{{now().strftime("%I:%M
+              %p")}}</font><br><font size=3> {{now().strftime("%A")}},
+              {{now().strftime("%d %B")}} </font> |
+
+              |:--|---------:|
+
+              || |
+          - type: horizontal-stack
+            cards:
+              - type: button
+                tap_action:
+                  action: navigate
+                  navigation_path: home
+                show_name: true
+                show_icon: false
+                name: Home
+                card_mod:
+                  style: |
+                    ha-card {
+                      height: 100% !important;
+                      background: none;
+                      box-shadow: none;
+                    }
+              - type: button
+                tap_action:
+                  action: navigate
+                  navigation_path: first-floor
+                show_name: true
+                show_icon: false
+                name: First Floor
+                card_mod:
+                  style: |
+                    ha-card {
+                      height: 100% !important;
+                      background: none;
+                      box-shadow: none;
+                    }
+              - type: button
+                tap_action:
+                  action: navigate
+                  navigation_path: ground-floor
+                show_name: true
+                show_icon: false
+                name: Ground Floor
+                card_mod:
+                  style: |
+                    ha-card {
+                      height: 100% !important;
+                      background: none;
+                      box-shadow: none;
+                    }
+              - type: button
+                tap_action:
+                  action: navigate
+                  navigation_path: backyard
+                show_name: true
+                show_icon: false
+                name: Backyard
+                card_mod:
+                  style: |
+                    ha-card {
+                      height: 100% !important;
+                      background: none;
+                      box-shadow: none;
+                    }
+              - type: button
+                tap_action:
+                  action: navigate
+                  navigation_path: prayer-time
+                show_name: true
+                show_icon: false
+                name: Prayer Time
+                card_mod:
+                  style: |
+                    ha-card {
+                      height: 100% !important;
+                      background: none;
+                      box-shadow: none;
+                    }
+            card_mod:
+              style: |
+                ha-card {
+                  height: 100% !important;
+                  background: none;
+                  box-shadow: none;
+                }
+        view_layout:
+          grid-area: footer
+      - type: custom:stack-in-card
+        keep:
+          background: true
+          box_shadow: true
+          margin: true
+          outer_padding: true
+          border_radius: true
+        cards:
+          - type: grid
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: custom:mini-graph-card
+                    height: 50
+                    entities:
+                      - sensor.room_temperature
+                    show:
+                      labels: true
+                      points: false
+                    color_thresholds:
+                      - value: 24
+                        color: '#f39c12'
+                      - value: 26
+                        color: '#d35400'
+                      - value: 28
+                        color: '#c0392b'
+                    card_mod:
+                      style: |
+                        ha-card {
+                          height: 1% !important;
+                          background: none;
+                          box-shadow: none;
+                        }
+                  - type: custom:simple-thermostat
+                    entity: climate.computer_room_thermostat
+                    header: false
+                    layout:
+                      mode:
+                        names: true
+                        icons: true
+                        headings: false
+                      step: column
+                    control:
+                      fan:
+                        auto: true
+                        'on': true
+                      hvac:
+                        heat: false
+                        heat_cool: false
+                    step_size: '1'
+                    decimals: '0'
+                    card_mod:
+                      style: |
+                        ha-card {
+                          height: 100% !important;
+                          background: none;
+                          box-shadow: none;
+                        }
+                card_mod:
+                  style: |
+                    ha-card{
+                       height: 10% !important;
+                      padding: 0px 0px 0px 0px  !important;
+                      background: none;
+                      box-shadow: none;
+                    }
+            columns: 1
+            square: false
+          - type: grid
+            cards:
+              - type: custom:homekit-card
+                style: |
+                  :host {
+                   --tile-background: var(--background-card-color);
+                   --tile-border-radius: 12px;
+                   --tile-width: 100px;
+                   --tile-height: 100px;
+                   --tile-on-background: var(--background-color-2);
+                   
+                   --tile-name-text-color: var(--text-color);
+                   --tile-on-name-text-color: var(--text-medium-color);
+                   
+                   --tile-state-text-color: var(--text-light-color);
+                   --tile-on-state-text-color: var(--text-medium-color);
+                   
+                   --tile-state-changed-text-color: var(--text-color);
+                   --tile-unavailable-state-text-color: var(--disabled-text-color);
+                   
+                   --tile-value-text-color: var(--text-color);
+                   
+                   
+                   --tile-icon-color: var(--text-light-color);
+                   --tile-on-icon-color: var(--accent-color);
+                   
+                   
+                   --tile-width-mobile: 90px;
+                   --tile-height-mobile: 90px;
+
+                   --min-header-height: 0px;
+
+                   --tile-icon-size: 30px;
+
+                   --tile-image-radius: 100%
+
+                   --slider-width: 120px;
+                   --slider-height: 120px;
+                  }
+                home: false
+                useBrightness: false
+                horizontalScroll: true
+                useTemperature: false
+                useRGB: false
+                titleColor: var(--text-medium-color)
+                enableColumns: true
+                statePositionTop: true
+                masonry: true
+                rows:
+                  - row: 1
+                    columns:
+                      - column: 1
+                        tileOnRow: 3
+                        entities:
+                          - title: Living Room
+                            popup:
+                              type: custom:light-popup-card
+                              brightnessWidth: 130px
+                              brightnessHeight: 350px
+                              switchWidth: 110px
+                              switchHeight: 300px
+                            entities:
+                              - entity: light.living_room_spot
+                                name: Spot
+                                icon: hass:spotlight
+                              - entity: light.living_room_covelight
+                                name: Cove Light
+                                icon: mdi:led-strip-variant
+                              - entity: light.living_room_chandlier
+                                name: Chandelier
+                                icon: mdi:ceiling-light
+                      - column: 2
+                        tileOnRow: 2
+                        entities:
+                          - title: Media
+                            entities:
+                              - entity: media_player.family_tv
+                                name: TV
+                                icon: mdi:remote-tv
+                                offIcon: mdi:remote-tv-off
+                                offStates:
+                                  - 'off'
+                                  - unavailable
+                                  - paused
+                                tap_action:
+                                  action: fire-dom-event
+                                  browser_mod:
+                                    command: call-service
+                                    service: browser_mod.popup
+                                    service_data:
+                                      deviceID: this
+                                      title: TV Remote
+                                      card:
+                                        type: custom:stack-in-card
+                                        card_mod:
+                                          style: |
+                                            ha-card {
+                                              border-style: solid;
+                                              border-width: 0px;
+                                              border-radius: 20px;
+                                            }
+                                        keep:
+                                          background: true
+                                          box_shadow: true
+                                          margin: true
+                                          outer_padding: true
+                                          border_radius: true
+                                        cards:
+                                          - type: custom:roku-card
+                                            entity: media_player.family_tv
+                                            style:
+                                              .: |
+                                                ha-card {
+                                                  border-radius: 20px;
+                                                  overflow: hidden;
+                                                  margin: 0 auto;
+                                                  padding-top: 0px;
+                                                  background: none;
+                                                  box-shadow: none;
+                                                }
+                                            tv: true
+                                            apps:
+                                              - image: /local/remote/netflix.webp
+                                                app: Netflix
+                                                tap_action:
+                                                  action: call-service
+                                                  service: script.family_tv_netflix
+                                              - image: /local/remote/plex2.webp
+                                                app: Plex
+                                                tap_action:
+                                                  action: call-service
+                                                  service: script.family_tv_plex
+                                            power:
+                                              tap_action:
+                                                action: call-service
+                                                service: script.family_tv_power
+                                            back:
+                                              tap_action:
+                                                action: call-service
+                                                service: script.family_tv_back
+                                            home:
+                                              tap_action:
+                                                action: call-service
+                                                service: script.family_tv_home
+                                            info:
+                                              tap_action:
+                                                action: call-service
+                                                service: script.family_tv_exit_tv
+                                            up:
+                                              tap_action:
+                                                action: call-service
+                                                service: script.family_tv_up
+                                            down:
+                                              tap_action:
+                                                action: call-service
+                                                service: script.family_tv_down
+                                            right:
+                                              tap_action:
+                                                action: call-service
+                                                service: script.family_tv_right
+                                            left:
+                                              tap_action:
+                                                action: call-service
+                                                service: script.family_tv_left
+                                            select:
+                                              tap_action:
+                                                action: call-service
+                                                service: script.family_tv_ok
+                                            volume_mute:
+                                              tap_action:
+                                                action: call-service
+                                                service: script.family_tv_mute
+                                            volume_up:
+                                              tap_action:
+                                                action: call-service
+                                                service: script.family_tv_vol_up
+                                            volume_down:
+                                              tap_action:
+                                                action: call-service
+                                                service: script.family_tv_vol_down
+                                            reverse:
+                                              tap_action:
+                                                action: call-service
+                                                service: script.family_tv_vol_down
+                                            play:
+                                              tap_action:
+                                                action: call-service
+                                                service: script.family_tv_vol_down
+                                            forward:
+                                              tap_action:
+                                                action: call-service
+                                                service: script.family_tv_vol_down
+                                          - type: grid
+                                            cards:
+                                              - type: button
+                                                tap_action:
+                                                  action: toggle
+                                                show_name: false
+                                                icon: hass:numeric-1-circle
+                                              - type: button
+                                                tap_action:
+                                                  action: toggle
+                                                show_name: false
+                                                icon: hass:numeric-2-circle
+                                              - type: button
+                                                tap_action:
+                                                  action: call-service
+                                                  service: androidtv.adb_command
+                                                  service_data:
+                                                    entity_id: media_player.family_tv
+                                                    command: '3'
+                                                  target: {}
+                                                icon: hass:numeric-3-circle
+                                                show_name: false
+                                              - type: button
+                                                tap_action:
+                                                  action: toggle
+                                                entity: light.family_room_all_toggle
+                                                icon: hass:numeric-4-circle
+                                                show_name: false
+                                              - type: button
+                                                tap_action:
+                                                  action: toggle
+                                                entity: light.family_room_all_toggle
+                                                icon: hass:numeric-5-circle
+                                                show_name: false
+                                              - type: button
+                                                tap_action:
+                                                  action: toggle
+                                                icon: hass:numeric-6-circle
+                                                show_name: false
+                                              - type: button
+                                                tap_action:
+                                                  action: toggle
+                                                entity: light.family_room_all_toggle
+                                                icon: hass:numeric-7-circle
+                                                show_name: false
+                                              - type: button
+                                                tap_action:
+                                                  action: toggle
+                                                entity: light.family_room_all_toggle
+                                                icon: hass:numeric-8-circle
+                                                show_name: false
+                                              - type: button
+                                                tap_action:
+                                                  action: toggle
+                                                icon: hass:numeric-9-circle
+                                                show_name: false
+                                              - type: button
+                                                tap_action:
+                                                  action: none
+                                                show_name: false
+                                              - type: button
+                                                tap_action:
+                                                  action: toggle
+                                                entity: light.family_room_all_toggle
+                                                icon: hass:numeric-0-circle
+                                                show_name: false
+                                              - type: button
+                                                tap_action:
+                                                  action: none
+                                                show_name: false
+                                            columns: 3
+                                            square: false
+                                        columns: 1
+                                        square: false
+                              - custom: eLife
+                                tap_action:
+                                  action: fire-dom-event
+                                  browser_mod:
+                                    command: call-service
+                                    service: browser_mod.popup
+                                    service_data:
+                                      deviceID: this
+                                      title: eLife Remote
+                                      card:
+                                        type: grid
+                                        cards:
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_mute
+                                              service_data: {}
+                                              target: {}
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_mute
+                                              service_data: {}
+                                              target: {}
+                                            icon: mdi:volume-mute
+                                            show_name: false
+                                          - type: custom:gap-card
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_power
+                                              service_data: {}
+                                              target: {}
+                                            entity: script.elife_power
+                                            show_name: false
+                                            show_state: false
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_power
+                                              service_data: {}
+                                              target: {}
+                                            icon: mdi:power
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_guide
+                                              service_data: {}
+                                              target: {}
+                                            icon: mdi:television-guide
+                                            show_name: false
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_guide
+                                              service_data: {}
+                                              target: {}
+                                            name: elife Guide
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_up
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_up
+                                              service_data: {}
+                                              target: {}
+                                            icon: mdi:chevron-double-up
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_media
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:presentation
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_media
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_left
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:chevron-double-left
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_left
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_ok
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:check-bold
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_ok
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_right
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:chevron-double-right
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_right
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_ondemand
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:movie
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_ondemand
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_dn
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:chevron-double-down
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_dn
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_home
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:home-circle-outline
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_home
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_volup
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:volume-plus
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_volup
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_menu
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:menu
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_menu
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_chup
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:arrow-up-drop-circle
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_chup
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_voldn
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:volume-minus
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_voldn
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_back
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:undo
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_back
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_chdn
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:arrow-down-drop-circle
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_chdn
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_1
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:numeric-1-circle
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_1
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_2
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:numeric-2-circle
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_2
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_3
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:numeric-3-circle
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_3
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_4
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:numeric-4-circle
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_4
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_5
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:numeric-5-circle
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_5
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_6
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:numeric-6-circle
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_6
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_7
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:numeric-7-circle
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_7
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_8
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:numeric-8-circle
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_8
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_9
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:numeric-9-circle
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_9
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_info
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:information-outline
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_info
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_0
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:numeric-0-circle
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_0
+                                              service_data: {}
+                                              target: {}
+                                          - type: button
+                                            tap_action:
+                                              action: call-service
+                                              service: script.elife_star
+                                              service_data: {}
+                                              target: {}
+                                            show_name: false
+                                            icon: mdi:asterisk
+                                            show_icon: true
+                                            hold_action:
+                                              action: call-service
+                                              service: script.elife_star
+                                              service_data: {}
+                                              target: {}
+                                        square: false
+                                        columns: 3
+                                name: eLife
+                                icon: mdi:set-top-box
+                                offIcon: mdi:set-top-box
+                                offStates:
+                                  - 'off'
+                                  - unavailable
+                                  - paused
+                      - column: 3
+                        tileOnRow: 3
+                        entities:
+                          - title: Main Entrance
+                            popup:
+                              type: custom:light-popup-card
+                              brightnessWidth: 130px
+                              brightnessHeight: 350px
+                              switchWidth: 110px
+                              switchHeight: 300px
+                            entities:
+                              - entity: light.main_entrance_spot
+                                name: Spot
+                                icon: hass:spotlight
+                              - entity: light.main_entrance_covelight
+                                icon: mdi:led-strip-variant
+                                name: Cove Light
+                              - entity: light.main_entrance_chandlier
+                                name: Chandelier
+                                icon: mdi:ceiling-light
+            columns: 1
+            square: false
+          - type: grid
+            cards:
+              - type: custom:mini-media-player
+                entity: media_player.family_room_display
+                toggle_power: false
+                volume_stateless: false
+                group: true
+                artwork: material
+                sound_mode: full
+                source: full
+            columns: 1
+            square: false
+        columns: 1
+        square: false
+        card_mod:
+          style: |
+            ha-card {
+              border-style: solid;
+              border-width: 0px;
+              border-radius: 20px;
+
+              background-color: var(--background-card-color);
+
+              --ha-card-header-color: white;
+              --ha-card-header-font-size: 40px;
+
+              height: 100% !important;
+
+              --vertical-stack-card-margin: 0px 0px 0px 0px;
+
+              --ha-card-background: rgba(50,50,50,0.3);
+            }
+        view_layout:
+          grid-area: sidebar
+    view_layout:
+      grid-area: main
+  - type: custom:stack-in-card
+    keep:
+      background: true
+      box_shadow: true
+      margin: true
+      outer_padding: true
+      border_radius: true
+    cards:
+      - type: glance
+        entities:
+          - entity: person.abdulla
+          - entity: person.ummohammed
+        card_mod:
+          style: |
+            ha-card {
+              height: 100% !important;
+              background: none;
+              box-shadow: none;
+            }
+      - type: custom:weather-card
+        entity: weather.amg_home
+        number_of_forecasts: '5'
+        details: false
+        card_mod:
+          style: |
+            ha-card {
+              height: 100% !important;
+              background: none;
+              box-shadow: none;
+            }
+      - type: custom:sun-card
+        darkMode: true
+        card_mod:
+          style: |
+            ha-card {
+              height: 100% !important;
+              background: none;
+              box-shadow: none;
+            }
+    card_mod:
+      style: |
+        ha-card {
+          border-style: solid;
+          border-width: 0px;
+          border-radius: 20px;
+
+          background-color: var(--background-card-color);
+
+          --ha-card-header-color: white;
+          --ha-card-header-font-size: 40px;
+
+          height: 100% !important;
+
+          --vertical-stack-card-margin: 0px 0px 0px 0px;
+
+          --ha-card-background: var(--background-card-color);
+        }
+    view_layout:
+      grid-area: sidebar
