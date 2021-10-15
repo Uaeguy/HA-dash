@@ -36,4 +36,4 @@ Additional dashboard
 
 # What you need to do?
 #### change all entities to your HA 
-#### This is only 2 dashboard, you need to add more dashboards or views then edit the buttons card and add navigation to your dashboards
+#### This is only 2 dashboards, you need to add more dashboards or views then edit the buttons card and add navigation to your dashboards
