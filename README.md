@@ -15,6 +15,8 @@ Custom Cards used
 ### [6- custom:weather-card](https://github.com/bramkragten/weather-card)
 ### [7- custom:sun-card](https://github.com/AitorDB/home-assistant-sun-card)
 ### [8- Card Mod](https://github.com/thomasloven/lovelace-card-mod)
+### [9- mini-media-player](https://github.com/kalkih/mini-media-player)
+### [10- Homekit-panel-card](https://github.com/DBuit/Homekit-panel-card)
 
 I have used [dark](https://community.home-assistant.io/t/clear-theme-dark/100960) theme and removed the header with the below command from card mod
 ```
@@ -27,7 +29,11 @@ I have used [dark](https://community.home-assistant.io/t/clear-theme-dark/100960
 
 ![alt text](https://raw.githubusercontent.com/Uaeguy/HA-dash/main/HAdash.png)
 
+Additional dashboard 
+![alt text](https://github.com/Uaeguy/HA-dash/blob/main/dash2.PNG)
+
+
 
 # What you need to do?
 #### change all entities to your HA 
-#### This is only 1 dashboard, you need to add more dashboards or views then edit the buttons card and add navigation to your dashboards
+#### This is only 2 dashboard, you need to add more dashboards or views then edit the buttons card and add navigation to your dashboards
